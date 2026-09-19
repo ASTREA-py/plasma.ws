@@ -1,534 +1,234 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000">
-  <meta name="description" content="Cotización de Plasma Workspace para Palomo Functional Training.">
-  <title>Cotización · Palomo Functional Training | Plasma Workspace</title>
+  <title>Plasma Workspace</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --black: #000;
-      --white: #f4f1e9;
-      --gold: #ccba8a;
-      --gold-soft: #d4c28f;
-      --line: rgba(204, 186, 138, .28);
-      --muted: rgba(244, 241, 233, .72);
-      --page: 1040px;
-      --content: 830px;
+    * {
+      box-sizing: border-box;
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html,
     body {
       margin: 0;
-      min-width: 320px;
-      background: var(--black);
-      color: var(--white);
-      font-family: "Poppins", sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.5;
-      text-rendering: optimizeLegibility;
+      min-height: 100%;
     }
-    body.modal-open { overflow: hidden; }
-    button, a { font: inherit; }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; }
-    .page-shell { width: min(100% - 40px, var(--page)); margin-inline: auto; }
-    .content-shell { width: min(100%, var(--content)); margin-inline: auto; }
-    .site-header { padding: 78px 0 46px; }
-    .brand { width: 220px; margin: 0 auto 56px; }
-    .eyebrow {
-      margin: 0 0 10px;
-      color: var(--gold);
-      font-size: .9rem;
-      font-weight: 500;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-    }
-    .header-copy { margin: 0; font-size: 1.02rem; }
-    .client-meta { margin-top: 42px; }
-    .divider { height: 1px; margin-top: 56px; background: var(--line); border: 0; }
-    .proposal { padding: 42px 0 78px; }
-    .intro-grid, .feature-grid {
+
+    body {
+      min-height: 100svh;
       display: grid;
-      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
-      align-items: center;
-      gap: clamp(48px, 9vw, 112px);
-    }
-    .intro-grid { margin-bottom: 74px; }
-    .client-logo { width: min(100%, 330px); }
-    .intro-copy { margin: 0; font-size: 1.03rem; line-height: 1.4; }
-    .feature-grid { align-items: start; margin-top: 64px; }
-    .feature-grid + .feature-grid { margin-top: 80px; }
-    .feature-title {
-      margin: 0 0 18px;
-      color: var(--gold);
-      font-size: .95rem;
-      font-weight: 500;
-      line-height: 1.35;
-      text-transform: uppercase;
-    }
-    .feature-copy p { margin: 0 0 18px; }
-    .feature-copy p:last-child { margin-bottom: 0; }
-    .mockup { width: 100%; border: 0; object-fit: contain; }
-    .details { padding: 0 0 80px; }
-    .tabs { display: flex; align-items: center; gap: 14px; margin-bottom: 42px; }
-    .tab-button {
-      min-height: 38px;
-      padding: 7px 26px;
-      border: 1px solid var(--gold);
-      border-radius: 999px;
-      background: transparent;
-      color: var(--white);
-      cursor: pointer;
-      font-size: .84rem;
+      grid-template-rows: 1fr auto;
+      padding: 24px 38px 32px;
+      background: #000000;
+      color: #ccba8a;
+      font-family: "Poppins", sans-serif;
       font-weight: 300;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-      transition: background-color .2s ease, color .2s ease, transform .2s ease;
-    }
-    .tab-button:hover { transform: translateY(-1px); }
-    .tab-button[aria-selected="true"] { background: var(--gold-soft); color: var(--black); font-weight: 500; }
-    .tab-button:focus-visible, .button:focus-visible, .modal-close:focus-visible,
-    .account-copy:focus-visible, .footer-link:focus-visible {
-      outline: 2px solid var(--white);
-      outline-offset: 4px;
-    }
-    .tab-panel ul { max-width: 780px; margin: 0 auto; padding-left: 24px; }
-    .tab-panel li { margin: 0 0 8px; padding-left: 10px; }
-    .tab-panel[hidden] { display: none; }
-    .investment { background: var(--gold-soft); color: var(--black); }
-    .investment-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 42px;
-      min-height: 156px;
-    }
-    .investment-title {
-      margin: 0;
-      font-size: clamp(1.2rem, 2.2vw, 1.65rem);
-      font-weight: 500;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-    }
-    .investment-price {
-      min-width: 310px;
-      margin: 0;
-      padding: 15px 30px;
-      border: 2px solid rgba(0, 0, 0, .65);
-      border-radius: 999px;
-      font-size: clamp(1rem, 2vw, 1.25rem);
       text-align: center;
     }
-    .decision { padding: 68px 0 60px; text-align: center; }
-    .decision-actions { display: flex; align-items: center; justify-content: center; gap: 28px; }
-    .or { color: var(--gold); font-size: 1.15rem; font-weight: 600; }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 10px 30px;
-      border: 1px solid var(--gold);
-      border-radius: 999px;
-      background: transparent;
-      color: var(--white);
-      cursor: pointer;
-      font-size: .9rem;
-      font-weight: 400;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: transform .2s ease, background-color .2s ease, color .2s ease;
+
+    main {
+      width: min(100%, 720px);
+      place-self: center;
+      padding: 56px 0;
     }
-    .button:hover { transform: translateY(-2px); }
-    .button-primary { background: var(--gold-soft); color: var(--black); }
-    .button-dark { border-color: var(--black); background: var(--black); color: var(--gold); }
-    .decision-note { margin: 42px auto 0; color: var(--muted); font-size: .95rem; }
-    .site-footer { padding: 0 0 48px; }
-    .footer-line { height: 1px; margin: 0 0 42px; border: 0; background: var(--line); }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    p {
+      margin: 0 auto;
+      max-width: 620px;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      font-weight: 600;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    a:hover,
+    a:focus-visible {
+      opacity: 0.72;
+    }
+
+    .site-footer {
+      width: min(100%, 1040px);
+      margin-inline: auto;
+      color: #ffffff;
+    }
+
+    .footer-line {
+      height: 1px;
+      margin: 0 0 38px;
+      border: 0;
+      background: rgba(204, 186, 138, 0.28);
+    }
+
     .footer-main {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       gap: 32px;
     }
-    .copyright { margin: 0; font-size: .72rem; }
-    .copyright-mark { color: var(--gold); }
-    .footer-logo { width: 130px; }
-    .footer-links { display: flex; align-items: center; justify-content: flex-end; gap: 26px; }
+
+    .copyright {
+      justify-self: start;
+      margin: 0;
+      font-size: 0.72rem;
+      font-weight: 400;
+    }
+
+    .copyright-mark {
+      color: #ccba8a;
+    }
+
+    .footer-logo {
+      width: 130px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 26px;
+    }
+
     .footer-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: #fff;
-      font-size: .72rem;
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 400;
       text-decoration: none;
       text-transform: uppercase;
     }
-    .footer-link svg { width: 17px; height: 17px; flex: 0 0 auto; color: var(--gold); }
+
+    .footer-link svg {
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
+      color: #ccba8a;
+    }
+
     .made-by {
       width: 100%;
       max-width: none;
-      margin: 54px auto 0;
-      color: var(--muted);
-      font-size: .68rem;
+      margin: 48px auto 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.68rem;
+      font-weight: 300;
       text-align: center;
     }
+
     .astrea-link {
-      color: var(--gold);
+      color: #ccba8a;
       font-weight: 500;
       text-decoration: none;
     }
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background: rgba(0, 0, 0, .78);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .28s ease, visibility .28s ease;
-    }
-    .modal.is-open { opacity: 1; visibility: visible; }
-    .modal-card {
-      position: relative;
-      width: min(100%, 410px);
-      padding: 46px 38px 34px;
-      border-radius: 48px;
-      background: var(--gold-soft);
-      color: var(--black);
-      text-align: center;
-      opacity: 0;
-      transform: translateY(38px);
-      transition: opacity .35s ease, transform .35s cubic-bezier(.22, 1, .36, 1);
-    }
-    .modal.is-open .modal-card { opacity: 1; transform: translateY(0); }
-    .modal-close {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      display: grid;
-      width: 34px;
-      height: 34px;
-      padding: 0;
-      place-items: center;
-      border: 0;
-      background: transparent;
-      color: var(--black);
-      cursor: pointer;
-      font-size: 1.7rem;
-      font-weight: 300;
-      line-height: 1;
-    }
-    .modal-title { margin: 0; font-size: 1.12rem; font-weight: 600; }
-    .modal-amount { margin: 0 0 28px; font-size: 1.08rem; line-height: 1.2; }
-    .transfer-label { margin: 0 0 7px; font-size: .8rem; }
-    .account-copy {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      min-height: 44px;
-      padding: 8px 18px;
-      border: 0;
-      border-radius: 999px;
-      background: #fff;
-      color: var(--black);
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .account-copy svg { width: 18px; height: 18px; }
-    .account-meta { margin: 7px 0 32px; font-size: .73rem; }
-    .copy-status { min-height: 18px; margin: -25px 0 9px; font-size: .7rem; font-weight: 500; }
-    .modal-actions { display: grid; gap: 12px; padding-inline: 18px; }
-    .modal-actions .button { width: 100%; min-height: 38px; padding-block: 7px; font-size: .72rem; }
-    .acceptance { margin: 34px 0 0; font-size: .78rem; font-weight: 400; line-height: 1.4; }
+
     @media (max-width: 720px) {
-      .site-header { padding-top: 54px; }
-      .brand { width: 190px; margin-bottom: 46px; }
-      .intro-grid, .feature-grid { grid-template-columns: 1fr; gap: 32px; }
-      .intro-grid { margin-bottom: 64px; }
-      .client-logo { width: min(78%, 310px); }
-      .intro-copy { max-width: 560px; }
-      .feature-grid { margin-top: 58px; }
-      .feature-grid + .feature-grid { margin-top: 70px; }
-      .feature-media { order: 2; }
-      .tabs {
-        justify-content: flex-start;
-        margin-inline: -20px;
-        padding: 2px 20px 8px;
-        overflow-x: auto;
-        scrollbar-width: none;
+      body {
+        padding-inline: 24px;
       }
-      .tabs::-webkit-scrollbar { display: none; }
-      .tab-button { flex: 0 0 auto; padding-inline: 20px; }
-      .investment-inner { flex-direction: column; gap: 20px; padding: 34px 0; }
-      .investment-price { min-width: 0; width: min(100%, 360px); }
-      .decision-actions { flex-direction: column; gap: 14px; }
-      .or { line-height: 1; }
-      .decision-actions .button { width: min(100%, 340px); }
-      .footer-main { grid-template-columns: 1fr; justify-items: center; }
-      .footer-logo { grid-row: 1; }
-      .copyright { grid-row: 3; }
-      .footer-links { grid-row: 2; justify-content: center; flex-wrap: wrap; }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .footer-logo {
+        grid-row: 1;
+      }
+
+      .footer-links {
+        grid-row: 2;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .copyright {
+        grid-row: 3;
+        justify-self: center;
+      }
     }
+
     @media (max-width: 430px) {
-      body { font-size: 14px; }
-      .page-shell { width: min(100% - 30px, var(--page)); }
-      .site-header { padding-top: 42px; }
-      .brand { width: 170px; }
-      .proposal { padding-bottom: 64px; }
-      .modal { padding: 15px; }
-      .modal-card { padding: 44px 24px 30px; border-radius: 38px; }
-      .modal-actions { padding-inline: 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      body {
+        padding: 18px 18px 28px;
+      }
+
+      main {
+        padding-block: 48px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .made-by {
+        margin-top: 38px;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="site-header page-shell">
-    <div class="content-shell">
-      <img class="brand" src="https://astrea-py.github.io/plasma.ws/assets/logo-plasma.png" alt="Plasma Workspace">
-      <p class="eyebrow">Cotización</p>
-      <p class="header-copy">Desarrollo de Key Visual y diseño de contenidos para redes sociales.</p>
-      <div class="client-meta">
-        <p class="eyebrow">Cliente</p>
-        <p class="header-copy">Palomo · Functional Training</p>
-      </div>
-      <hr class="divider">
-    </div>
-  </header>
   <main>
-    <section class="proposal page-shell" aria-label="Propuesta de servicio">
-      <div class="content-shell">
-        <div class="intro-grid">
-          <img class="client-logo" src="https://astrea-py.github.io/plasma.ws/assets/logo-palomo.png" alt="Palomo Functional Training">
-          <p class="intro-copy">Desarrollo de una línea visual para comunicación en redes sociales y diseño periódico de piezas gráficas, orientadas a mantener una presencia visual consistente con la identidad de la marca.</p>
-        </div>
-        <article class="feature-grid">
-          <div class="feature-copy">
-            <h2 class="feature-title">Desarrollo de Key Visual para redes sociales</h2>
-            <p>Desarrollo de una propuesta gráfica para comunicación de marca en redes sociales.</p>
-            <p>Incluye definición de criterios de composición, tratamiento tipográfico, aplicación de colores, recursos gráficos y estilo general de las piezas.</p>
-            <p>El Key Visual funcionará como sistema gráfico de referencia para el posterior desarrollo de los contenidos contemplados en el calendario mensual.</p>
-          </div>
-          <div class="feature-media">
-            <img class="mockup" src="https://astrea-py.github.io/plasma.ws/assets/mockup-01.jpg" alt="Aplicación del Key Visual desarrollado para Palomo" loading="lazy">
-          </div>
-        </article>
-        <article class="feature-grid">
-          <div class="feature-copy">
-            <h2 class="feature-title">Diseño en base a calendario mensual de publicaciones</h2>
-            <p>Diseño de hasta 4 publicaciones mensuales, desarrolladas a partir del Key Visual aprobado.</p>
-            <p>Las piezas podrán contemplar diferentes composiciones dentro del mismo sistema visual, de acuerdo con el contenido suministrado y las necesidades de comunicación de cada publicación.</p>
-          </div>
-          <div class="feature-media">
-            <img class="mockup" src="https://astrea-py.github.io/plasma.ws/assets/mockup-02.jpg" alt="Aplicaciones mensuales del sistema visual de Palomo" loading="lazy">
-          </div>
-        </article>
-      </div>
-    </section>
-    <section class="details page-shell" aria-label="Detalles de la cotización">
-      <div class="content-shell">
-        <div class="tabs" role="tablist" aria-label="Información contractual">
-          <button class="tab-button" type="button" role="tab" id="tab-alcance" aria-selected="true" aria-controls="panel-alcance">Alcance</button>
-          <button class="tab-button" type="button" role="tab" id="tab-condiciones" aria-selected="false" aria-controls="panel-condiciones" tabindex="-1">Condiciones de servicio</button>
-          <button class="tab-button" type="button" role="tab" id="tab-exclusiones" aria-selected="false" aria-controls="panel-exclusiones" tabindex="-1">Exclusiones</button>
-        </div>
-        <div class="tab-panel" id="panel-alcance" role="tabpanel" aria-labelledby="tab-alcance" tabindex="0">
-          <ul>
-            <li>Diseño de hasta 4 publicaciones mensuales.</li>
-            <li>Adaptación de contenidos al sistema visual desarrollado.</li>
-            <li>Diseño en formatos estándar para redes sociales.</li>
-            <li>Aplicación de fotografías, textos y recursos suministrados por el cliente.</li>
-            <li>Organización y entrega de las piezas correspondientes al calendario acordado.</li>
-            <li>Hasta 2 rondas de ajustes sobre las propuestas presentadas.</li>
-          </ul>
-        </div>
-        <div class="tab-panel" id="panel-condiciones" role="tabpanel" aria-labelledby="tab-condiciones" tabindex="0" hidden>
-          <ul>
-            <li>El desarrollo de las piezas se realizará sobre la base del Key Visual previamente aprobado.</li>
-            <li>El cliente deberá proporcionar con anticipación los textos, fotografías, promociones, productos, fechas y demás información necesaria para desarrollar las publicaciones correspondientes.</li>
-            <li>Se contemplan hasta 2 rondas de ajustes. Cambios posteriores a la aprobación, modificaciones sustanciales de contenido o solicitudes que impliquen desarrollar nuevas alternativas serán presupuestados adicionalmente.</li>
-            <li>Las piezas serán entregadas en formatos digitales optimizados para las redes sociales acordadas.</li>
-            <li>La planificación y entrega podrá realizarse de manera mensual, de acuerdo con un calendario previamente coordinado entre las partes.</li>
-            <li>Forma de pago: 50% de anticipo para el desarrollo inicial del KV y saldo contra aprobación. El servicio mensual de diseño se abonará al inicio de cada período.</li>
-          </ul>
-        </div>
-        <div class="tab-panel" id="panel-exclusiones" role="tabpanel" aria-labelledby="tab-exclusiones" tabindex="0" hidden>
-          <ul>
-            <li>No se encuentran incluidos en el presente alcance: estrategia de comunicación; community management; publicación o programación de contenidos; moderación o respuesta a usuarios; gestión de pauta publicitaria; producción audiovisual; animaciones, reels o edición de video; ni adaptaciones adicionales no especificadas.</li>
-            <li>Tampoco se contempla el desarrollo de una nueva identidad visual o branding.</li>
-            <li>Cualquier pieza, formato, campaña o servicio no expresamente contemplado deberá ser evaluado y presupuestado adicionalmente antes de su ejecución.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section class="investment" aria-label="Inversión total">
-      <div class="investment-inner page-shell">
-        <h2 class="investment-title">Inversión total</h2>
-        <p class="investment-price">Gs. 620.000 IVA incluido</p>
-      </div>
-    </section>
-    <section class="decision page-shell" aria-label="Confirmación de la cotización">
-      <div class="content-shell">
-        <div class="decision-actions">
-          <button class="button button-primary" id="open-contract" type="button">Contratar</button>
-          <span class="or" aria-hidden="true">o</span>
-          <a class="button" id="advisor-link" href="#" target="_blank" rel="noopener noreferrer">Revisar con un asesor</a>
-        </div>
-        <p class="decision-note">Acceda a la cotización actual, vigente hasta el 18/09/2026.<br>O solicite una revisión de alcance de servicio y/o presupuesto disponible.</p>
-      </div>
-    </section>
+    <h1>¡Llegaste muy temprano!</h1>
+    <p>
+      Todavía estamos trabajando en esto, pero por mientras podés sumarte a la comunidad de
+      <a href="https://www.instagram.com/plasma.ws" target="_blank" rel="noopener noreferrer">plasma workspace</a> ;)
+    </p>
   </main>
-  <footer class="site-footer page-shell">
-    <div class="content-shell">
-      <hr class="footer-line">
-      <div class="footer-main">
-        <p class="copyright">PLASMA <span class="copyright-mark">©</span> 2026</p>
-        <img class="footer-logo" src="https://astrea-py.github.io/plasma.ws/assets/logo-plasma.png" alt="Plasma Workspace">
-        <div class="footer-links">
-          <a class="footer-link" href="https://wa.me/595994151453" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Plasma por WhatsApp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.3 2 2 3.8 4 4.3l1-1c.2-.2.5-.3.8-.1l2 1c.3.2.4.5.3.8-.4 1.2-1.5 2-2.8 2-3.4-.2-6.4-3.1-6.7-6.5 0-1.2.7-2.3 1.8-2.8.3-.1.7 0 .8.3l.9 2c.1.3 0 .6-.2.8Z"/></svg>
-            +595 994 151 453
-          </a>
-          <a class="footer-link" href="https://www.instagram.com/plasma.ws/" target="_blank" rel="noopener noreferrer" aria-label="Visitar Plasma Workspace en Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
-            plasma.ws
-          </a>
-        </div>
+
+  <footer class="site-footer">
+    <hr class="footer-line">
+
+    <div class="footer-main">
+      <p class="copyright">PLASMA <span class="copyright-mark">©</span> 2026</p>
+
+      <img class="footer-logo" src="https://astrea-py.github.io/plasma.ws/assets/logo-plasma.png" alt="Plasma Workspace">
+
+      <div class="footer-links">
+        <a class="footer-link" href="https://wa.me/595994151453" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Plasma por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/>
+            <path d="M9 8.5c.3 2 2 3.8 4 4.3l1-1c.2-.2.5-.3.8-.1l2 1c.3.2.4.5.3.8-.4 1.2-1.5 2-2.8 2-3.4-.2-6.4-3.1-6.7-6.5 0-1.2.7-2.3 1.8-2.8.3-.1.7 0 .8.3l.9 2c.1.3 0 .6-.2.8Z"/>
+          </svg>
+          <span>+595 994 151 453</span>
+        </a>
+
+        <a class="footer-link" href="https://www.instagram.com/plasma.ws/" target="_blank" rel="noopener noreferrer" aria-label="Visitar Plasma Workspace en Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          <span>plasma.ws</span>
+        </a>
       </div>
-      <p class="made-by">
-        This site was made with all the love of the world
-        <a class="astrea-link" href="https://www.instagram.com/astrea.ndive/" target="_blank" rel="noopener noreferrer">by ASTREA™</a>
-      </p>
     </div>
+
+    <p class="made-by">
+      This site was made with all the love of the world
+      <a class="astrea-link" href="https://www.instagram.com/astrea.ndive/" target="_blank" rel="noopener noreferrer">by ASTREA™</a>
+    </p>
   </footer>
-  <div class="modal" id="contract-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
-    <div class="modal-card">
-      <button class="modal-close" id="close-contract" type="button" aria-label="Cerrar ventana">×</button>
-      <h2 class="modal-title" id="modal-title">Abono de confirmación</h2>
-      <p class="modal-amount">Gs. 310.000</p>
-      <p class="transfer-label">Transferencia</p>
-      <button class="account-copy" id="copy-account" type="button" aria-describedby="copy-status">
-        <span>994151453</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
-      </button>
-      <p class="account-meta">Alias: Nro. teléfono&nbsp; | &nbsp;Banco: Itaú</p>
-      <p class="copy-status" id="copy-status" aria-live="polite"></p>
-      <div class="modal-actions">
-        <a class="button button-dark" id="receipt-link" href="#" target="_blank" rel="noopener noreferrer">Adjuntar comprobante</a>
-        <a class="button" id="cash-link" href="#" target="_blank" rel="noopener noreferrer">Adelanto en efectivo</a>
-      </div>
-      <p class="acceptance">Al continuar confirma la revisión y aprobación del alcance, las condiciones, las exclusiones y la inversión de esta cotización.</p>
-    </div>
-  </div>
-  <script>
-    (() => {
-      "use strict";
-      const quoteId = "Pws-PALOMO-2026-001";
-      const whatsappNumber = "595994151453";
-      const whatsappUrl = (message) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-      const messages = {
-        receipt: `Hola. He leído y acepto la cotización ${quoteId}, incluyendo su alcance, condiciones, exclusiones e inversión. Realizaré el abono inicial de Gs. 310.000 mediante transferencia. Adjunto el comprobante a continuación.`,
-        cash: `Hola. He leído y acepto la cotización ${quoteId}, incluyendo su alcance, condiciones, exclusiones e inversión. El abono inicial de Gs. 310.000 se realizará en efectivo. Quisiera coordinar la entrega.`,
-        advisor: `Hola. Estuve revisando la cotización ${quoteId} para Palomo Functional Training y quisiera consultar algunos puntos antes de confirmar.`
-      };
-      document.querySelector("#receipt-link").href = whatsappUrl(messages.receipt);
-      document.querySelector("#cash-link").href = whatsappUrl(messages.cash);
-      document.querySelector("#advisor-link").href = whatsappUrl(messages.advisor);
-      const tabs = [...document.querySelectorAll('[role="tab"]')];
-      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
-      function activateTab(tab) {
-        tabs.forEach((item) => {
-          const active = item === tab;
-          item.setAttribute("aria-selected", String(active));
-          item.tabIndex = active ? 0 : -1;
-        });
-        panels.forEach((panel) => { panel.hidden = panel.id !== tab.getAttribute("aria-controls"); });
-      }
-      tabs.forEach((tab, index) => {
-        tab.addEventListener("click", () => activateTab(tab));
-        tab.addEventListener("keydown", (event) => {
-          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
-          event.preventDefault();
-          let nextIndex = index;
-          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
-          if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
-          if (event.key === "Home") nextIndex = 0;
-          if (event.key === "End") nextIndex = tabs.length - 1;
-          activateTab(tabs[nextIndex]);
-          tabs[nextIndex].focus();
-        });
-      });
-      const modal = document.querySelector("#contract-modal");
-      const modalCard = modal.querySelector(".modal-card");
-      const openButton = document.querySelector("#open-contract");
-      const closeButton = document.querySelector("#close-contract");
-      let lastFocusedElement = null;
-      function openModal() {
-        lastFocusedElement = document.activeElement;
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
-        window.setTimeout(() => closeButton.focus(), 60);
-      }
-      function closeModal() {
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("modal-open");
-        if (lastFocusedElement) lastFocusedElement.focus();
-      }
-      openButton.addEventListener("click", openModal);
-      closeButton.addEventListener("click", closeModal);
-      modal.addEventListener("click", (event) => {
-        if (!modalCard.contains(event.target)) closeModal();
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
-        if (event.key === "Tab" && modal.classList.contains("is-open")) {
-          const focusable = [...modal.querySelectorAll('button, a[href]')];
-          const first = focusable[0];
-          const last = focusable[focusable.length - 1];
-          if (event.shiftKey && document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-          } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-          }
-        }
-      });
-      const copyButton = document.querySelector("#copy-account");
-      const copyStatus = document.querySelector("#copy-status");
-      let statusTimer;
-      copyButton.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText("994151453");
-          copyStatus.textContent = "Número copiado";
-        } catch {
-          const selection = window.getSelection();
-          const range = document.createRange();
-          range.selectNodeContents(copyButton.querySelector("span"));
-          selection.removeAllRanges();
-          selection.addRange(range);
-          copyStatus.textContent = "Número seleccionado para copiar";
-        }
-        window.clearTimeout(statusTimer);
-        statusTimer = window.setTimeout(() => { copyStatus.textContent = ""; }, 2200);
-      });
-    })();
-  </script>
 </body>
 </html>
